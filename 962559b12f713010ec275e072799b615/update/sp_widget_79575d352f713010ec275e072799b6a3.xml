@@ -20,10 +20,24 @@ function($rootScope,$scope) {
 		$rootScope.showID = id;
 		$rootScope.$emit('selectShow', id);
 	}
+	
+//	showForm = false;
+//	c.addShowForm = function(){
+//		c.showForm = true;
+//	}
 }
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css/>
+        <css>.add-show-checkbox-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-show-form {
+   display: flex;
+  flex-direction: column;
+  
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -69,14 +83,14 @@ function($rootScope,$scope) {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-06 16:12:45</sys_created_on>
         <sys_id>79575d352f713010ec275e072799b6a3</sys_id>
-        <sys_mod_count>74</sys_mod_count>
+        <sys_mod_count>105</sys_mod_count>
         <sys_name>shows list_1</sys_name>
         <sys_package display_value="shows_fun" source="x_669416_shows_fun">962559b12f713010ec275e072799b615</sys_package>
         <sys_policy/>
         <sys_scope display_value="shows_fun">962559b12f713010ec275e072799b615</sys_scope>
         <sys_update_name>sp_widget_79575d352f713010ec275e072799b6a3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-12 14:03:26</sys_updated_on>
+        <sys_updated_on>2021-08-12 19:47:05</sys_updated_on>
         <template><![CDATA[<div class="panel panel-primary">
   	  <div class="panel-heading clearfix">
   	    <h3 class="panel-title pull-left">
@@ -101,9 +115,43 @@ function($rootScope,$scope) {
           {{show.ticket_price}}
           </p>
         </a>
-        <h5>
-          Add a show! aye?
-        </h5>
+    
+        <div class="add-show-checkbox-container">
+              <h4>
+            a d d a s h o w !
+        </h4>
+        <input type="checkbox" ng-model="showForm">
+        </div>
+        <form class="add-show-form" ng-show="showForm">
+          <p>
+            What kind of show are you putting on, aye?
+          </p>
+          <label value="title">
+            title:
+          </label>
+          <input value="title" type="text-field" ng-model="show_title" placeholder="enter your title here">
+           <label value="date" >
+            date:
+          </label>
+          <input value="date" type="date" ng-model="date" >
+           <label value="location">
+            location:
+          </label>
+          <input value="location" type="text-field" ng-model="location" placeholder="enter your location here">
+           <label value="public">
+            is it a public show?:
+          </label>
+          <label>public:</label><input value="public" type="checkbox" ng-model="public" value="public" >
+          <label>private:</label><input type="checkbox" ng-model="public" value="private" >
+            <label>
+            What's the door charge?:
+          </label>
+          <input type="text-field" ng-model="price" placeholder="enter your price here">
+          
+          <button>
+            s u b m i t
+          </button>
+        </form>
   	  </div>
   	</div>]]></template>
     </sp_widget>

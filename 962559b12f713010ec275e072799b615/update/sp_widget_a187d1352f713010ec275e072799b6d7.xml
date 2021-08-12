@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function($scope, $rootScope) {
+        <client_script><![CDATA[function($scope, $rootScope, spModal, spUtil) {
 	var c = this;
 	
 	c.updateShow = function(updateType){
@@ -15,6 +15,24 @@
 			date: c.data.date
 		}).then(function(r){
 			
+		})
+	}
+
+	c.confirmDelete = function(){
+		spModal.confirm("are you sure you want to delete this note? huh?")
+		.then(function(confirmed){
+			if(confirmed){
+				c.deleteShow();
+			}
+		})
+	}
+	c.deleteShow = function(){
+		c.server.get({
+			action: 'deleteShow',
+			showID: $rootScope.showID
+			
+		}).then(function(r){
+			spUtil.addInfoMessage("YOU DELETED YOUR MESSAGE GREAT JOB!!!")
 		})
 	}
 	//Set up a rootscope listener to catch the emit from the showslist_1 client script
@@ -81,6 +99,9 @@ if ( input && input.showID){
 				show.ticket_price = input.ticket_price
 				show.update();
 				
+			} else if (input.action == 'deleteShow'){
+				show.deleteRecord();
+			//	show.updateMultiple();
 			}
 		}
 }
@@ -90,19 +111,19 @@ if ( input && input.showID){
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-06 16:13:34</sys_created_on>
         <sys_id>a187d1352f713010ec275e072799b6d7</sys_id>
-        <sys_mod_count>55</sys_mod_count>
+        <sys_mod_count>74</sys_mod_count>
         <sys_name>shows body_1</sys_name>
         <sys_package display_value="shows_fun" source="x_669416_shows_fun">962559b12f713010ec275e072799b615</sys_package>
         <sys_policy/>
         <sys_scope display_value="shows_fun">962559b12f713010ec275e072799b615</sys_scope>
         <sys_update_name>sp_widget_a187d1352f713010ec275e072799b6d7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-12 16:35:06</sys_updated_on>
+        <sys_updated_on>2021-08-12 18:34:24</sys_updated_on>
         <template><![CDATA[<div class="panel panel-default" ng-show="c.data.showID">
   <div class="panel-heading clearfix">
     <div class="row">
       <div class="col-md-12">
-        <input class="form-control" id="show-title" ng-model="c.data.show_title" ng-change="c.updateShow('show_title')" ng-model-options="{debounce: 1000}"//>
+        <input class="form-control" id="show-title" ng-model="c.data.show_title" ng-change="c.updateShow('show_title')" ng-model-options="{debounce: 1000}"/>
       </div>
     </div>
   </div>
@@ -120,7 +141,7 @@ if ( input && input.showID){
     date:
   </p>
   <div class="panel-body">
-    <textarea class="form-control" id="show-body" ng-model="c.data.date" ng-change="c.updateShow('date')" ng-model-options="{debounce: 1000}"/ ></textarea>
+    <textarea class="form-control" id="show-body" ng-model="c.data.date" ng-change="c.updateShow('date')" ng-model-options="{debounce: 1000}"/></textarea>
   </div>
   <p>
     location:
@@ -134,7 +155,9 @@ if ( input && input.showID){
   <div class="panel-body">
     <textarea class="form-control" id="show-body" ng-model="c.data.price" ng-change="c.updateShow('price')" ng-model-options="{debounce: 1000}"/></textarea>
   </div>
-</div>
-]]></template>
+<button class="delete-button" ng-click="c.confirmDelete()">
+  d e l e t e
+</button>
+</div>]]></template>
     </sp_widget>
 </record_update>
