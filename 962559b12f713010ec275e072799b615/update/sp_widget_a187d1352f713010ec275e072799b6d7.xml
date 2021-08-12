@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $rootScope) {
+	var c = this;
+	
+	c.updateShow = function(updateType){
+		c.server.get({
+			action: 'updateShow',
+			showID: c.data.showID,
+			show_title: c.data.show_title,
+			public: c.data.public,
+			price: c.data.price,
+			location: c.data.location,
+			date: c.data.date
+		}).then(function(r){
+			
+		})
+	}
+	//Set up a rootscope listener to catch the emit from the showslist_1 client script
+	$rootScope.$on('selectShow', function(event, data){
+		console.log('listener caught ShowID: '+ $rootScope.showID)
+		console.log(c.data);
+		//within the listener we call the server script and pass custom input
+		// to get the showID from the $rootScope
+		c.server.get({
+				action: 'getShow',
+				showID: $rootScope.showID
+			//^returns a promise and when the response is recieved from the server
+			//v this function executes, setting the response data to the controller
+			//data object
+		}).then(function(r){
+			//basically you're mapping the response object to the 
+			//c.data object, and when you console.log it
+			// you should see the data match the variable names you put in
+			c.data.show_title = r.data.show.show_title;
+			c.data.public = r.data.show.public;
+			c.data.showID = r.data.show.sys_id;
+			c.data.date = r.data.show.date;
+			c.data.location = r.data.show.location;
+			c.data.price = r.data.show.ticket_price;
+		})
+	})
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>shows_body_1</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>shows body_1</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	//use the input object from the client script
+if ( input && input.showID){
+	// initiate a gliderecord called show equal to the 
+	//corresponding table
+	var show = new GlideRecord('x_669416_shows_fun_shows');
+		//
+	
+		if(show.get(input.showID)){
+			if(input.action == 'getShow'){
+				data.show = {};
+				$sp.getRecordValues(data.show, show, "show_title, public, sys_id, ticket_price, location, date");
+				
+			} else if (input.action == 'updateShow'){
+				
+				show.show_title = input.show_title,
+				show.public = input.public,
+				show.date = input.date,
+				show.location = input.location, 
+				show.ticket_price = input.ticket_price
+				show.update();
+				
+			}
+		}
+}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-06 16:13:34</sys_created_on>
+        <sys_id>a187d1352f713010ec275e072799b6d7</sys_id>
+        <sys_mod_count>55</sys_mod_count>
+        <sys_name>shows body_1</sys_name>
+        <sys_package display_value="shows_fun" source="x_669416_shows_fun">962559b12f713010ec275e072799b615</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="shows_fun">962559b12f713010ec275e072799b615</sys_scope>
+        <sys_update_name>sp_widget_a187d1352f713010ec275e072799b6d7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-12 16:35:06</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default" ng-show="c.data.showID">
+  <div class="panel-heading clearfix">
+    <div class="row">
+      <div class="col-md-12">
+        <input class="form-control" id="show-title" ng-model="c.data.show_title" ng-change="c.updateShow('show_title')" ng-model-options="{debounce: 1000}"//>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="panel radio-buttons">
+    <p>
+      public?:
+    </p>
+    <input type="radio" class="form-control" id="show-body" ng-model="c.data.public" value="true" ng-change="c.updateShow('public')" ng-model-options="{debounce: 1000}"/>
+    	<label for="true">true</label>
+     <input type="radio" class="form-control" id="show-body" ng-model="c.data.public" value="false" ng-change="c.updateShow('public')" ng-model-options="{debounce: 1000}"/>
+    	<label for="false">false</label>
+     </div>
+  <p>
+    date:
+  </p>
+  <div class="panel-body">
+    <textarea class="form-control" id="show-body" ng-model="c.data.date" ng-change="c.updateShow('date')" ng-model-options="{debounce: 1000}"/ ></textarea>
+  </div>
+  <p>
+    location:
+  </p>
+  <div class="panel-body">
+    <textarea class="form-control" id="show-body" ng-model="c.data.location" ng-change="c.updateShow('location')" ng-model-options="{debounce: 1000}"/></textarea>
+  </div>
+  <p>
+    ticket price:
+  </p>
+  <div class="panel-body">
+    <textarea class="form-control" id="show-body" ng-model="c.data.price" ng-change="c.updateShow('price')" ng-model-options="{debounce: 1000}"/></textarea>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>
