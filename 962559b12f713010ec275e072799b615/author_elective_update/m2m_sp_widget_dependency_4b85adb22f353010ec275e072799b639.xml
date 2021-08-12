@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency">
+    <m2m_sp_widget_dependency action="DELETE">
+        <sp_dependency display_value="test">6665adb22f353010ec275e072799b619</sp_dependency>
+        <sp_widget display_value="shows list_1">79575d352f713010ec275e072799b6a3</sp_widget>
+        <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-09 19:48:45</sys_created_on>
+        <sys_id>4b85adb22f353010ec275e072799b639</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>test.shows list_1</sys_name>
+        <sys_package display_value="shows_fun" source="x_669416_shows_fun">962559b12f713010ec275e072799b615</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="shows_fun">962559b12f713010ec275e072799b615</sys_scope>
+        <sys_update_name>m2m_sp_widget_dependency_4b85adb22f353010ec275e072799b639</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-09 19:48:45</sys_updated_on>
+    </m2m_sp_widget_dependency>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="shows_fun">962559b12f713010ec275e072799b615</application>
+        <file_path/>
+        <instance_id>9b4fa053db2e089052dd2f17d496193c</instance_id>
+        <instance_name>dev98323</instance_name>
+        <name>m2m_sp_widget_dependency_4b85adb22f353010ec275e072799b639</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency"><m2m_sp_widget_dependency action="INSERT_OR_UPDATE"><sp_dependency display_value="test">6665adb22f353010ec275e072799b619</sp_dependency><sp_widget display_value="shows list_1">79575d352f713010ec275e072799b6a3</sp_widget><sys_class_name>m2m_sp_widget_dependency</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-09 19:48:45</sys_created_on><sys_id>4b85adb22f353010ec275e072799b639</sys_id><sys_mod_count>0</sys_mod_count><sys_name>test.shows list_1</sys_name><sys_package display_value="shows_fun" source="x_669416_shows_fun">962559b12f713010ec275e072799b615</sys_package><sys_policy/><sys_scope display_value="shows_fun">962559b12f713010ec275e072799b615</sys_scope><sys_update_name>m2m_sp_widget_dependency_4b85adb22f353010ec275e072799b639</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-09 19:48:45</sys_updated_on></m2m_sp_widget_dependency></record_update>]]></payload>
+        <payload_hash>-1418990298</payload_hash>
+        <record_name>test.shows list_1</record_name>
+        <reverted_from/>
+        <source>aa2599352f713010ec275e072799b62d</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-09 19:48:45</sys_created_on>
+        <sys_id>0785adb22f353010ec275e072799b63c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17b2c75d5f50000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-09 19:48:45</sys_updated_on>
+        <type>Widget Dependency</type>
+        <update_guid>0f85adb266353010e3437e15300bd13b</update_guid>
+        <update_guid_history>0f85adb266353010e3437e15300bd13b:-1418990298</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="test.shows list_1">91f608ab2f353010ec275e072799b68c</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-11 20:50:56</sys_created_on>
+        <sys_db_object display_value="" name="m2m_sp_widget_dependency">m2m_sp_widget_dependency</sys_db_object>
+        <sys_id>1c24d7dbbe2a4883bad082ac18e651c1</sys_id>
+        <sys_metadata>4b85adb22f353010ec275e072799b639</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>test.shows list_1</sys_name>
+        <sys_package display_value="shows_fun" source="x_669416_shows_fun">962559b12f713010ec275e072799b615</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="shows_fun">962559b12f713010ec275e072799b615</sys_scope>
+        <sys_scope_delete display_value="">aed49e3dd49a4c45bdfb4f60c24b3b41</sys_scope_delete>
+        <sys_update_name>m2m_sp_widget_dependency_4b85adb22f353010ec275e072799b639</sys_update_name>
+        <sys_update_version display_value="m2m_sp_widget_dependency_4b85adb22f353010ec275e072799b639">0785adb22f353010ec275e072799b63c</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-11 20:50:56</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

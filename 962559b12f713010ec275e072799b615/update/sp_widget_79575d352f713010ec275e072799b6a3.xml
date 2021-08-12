@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[//function ($rootScope, $scope) {
+//	var c = this;
+//	c.selectItem = function(idx) {
+//		var id = c.data.notes[idx].sys_id;
+//		console.log('Note ID: ' + id);
+//		$rootScope.noteID = id;
+//		$rootScope.$emit('selectNote', id);
+//	}
+//}
+
+function($rootScope,$scope) {
+	/* widget controller */
+	var c = this;
+	c.selectItem = function(idx) {
+		var id = c.data.shows[idx].sys_id;
+		console.log('Show ID: ' + id);
+		$rootScope.showID = id;
+		$rootScope.$emit('selectShow', id);
+	}
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>shows_list_1</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>shows list_1</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	data.shows = [];
+	var showGR = new GlideRecord("x_669416_shows_fun_shows");
+	//	x_669416_shows_fun_shows_list
+	// showGR.addQuery("user", gs.getUser().getID());
+	showGR.orderByDesc("sys_created_on");
+	showGR.query();
+	
+	console.log("made it to this function");
+	console.log("x_669416_shows_fun_shows");
+	
+	while (showGR.next()) {
+		
+		console.log("made it to while!")
+		
+		var showObj = {};
+		//use service portal helper method to get some display values
+		$sp.getRecordDisplayValues(showObj, showGR, "number,show_title,sys_id,location,date,public,ticket_price");
+		//get the first 20 characters of the description
+		showObj.show = showGR.getValue("date").slice(0,20);
+		//push the populated obj into the array
+		data.shows.push(showObj);
+	}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-06 16:12:45</sys_created_on>
+        <sys_id>79575d352f713010ec275e072799b6a3</sys_id>
+        <sys_mod_count>74</sys_mod_count>
+        <sys_name>shows list_1</sys_name>
+        <sys_package display_value="shows_fun" source="x_669416_shows_fun">962559b12f713010ec275e072799b615</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="shows_fun">962559b12f713010ec275e072799b615</sys_scope>
+        <sys_update_name>sp_widget_79575d352f713010ec275e072799b6a3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-12 14:03:26</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-primary">
+  	  <div class="panel-heading clearfix">
+  	    <h3 class="panel-title pull-left">
+  	      ${Shows}
+  	    </h3>
+  	  </div>
+  	  <div class="list-group">
+        <a class="list-group-item" ng-repeat="show in data.shows" ng-click="c.selectItem($index)">
+        <h4 class="list-group-item-heading">
+          {{show.show_title}}
+          </h4>
+        <p class="list-group-item">
+          {{show.date}}
+          </p>
+           <p class="list-group-item-text">
+          {{show.location}}
+          </p>
+           <p class="list-group-item-text">
+          {{show.public}}
+          </p>
+           <p class="list-group-item-text">
+          {{show.ticket_price}}
+          </p>
+        </a>
+        <h5>
+          Add a show! aye?
+        </h5>
+  	  </div>
+  	</div>]]></template>
+    </sp_widget>
+</record_update>
